@@ -68,3 +68,8 @@ Only use render blocking when you have specific reason. Loading Javascript in th
 
 Objects are typically constants:
 We can change the properties of the object inside the container. We can't remove or replace the object from the container.
+
+document.querySelector
+document.querySelectorAll
+document.getElementsByClassName
+document.getElementsById
