@@ -1,0 +1,70 @@
+JSX: A syntax extension of JavaScript created for the React Javascript framework
+
+Components:
+
+- Objects
+- Methods
+- Functions
+- Template Literals
+- Arrays
+
+JavaScript: The core language, AKA Vanilla JS
+
+ECMAScript: The browser specification of the JS language
+
+ES6, ES2015, ES2017, ES2020 tc....
+Refers to the use of features defined in ECMAScript, but not necessarily supported by modern browsers
+Also means using Babel.js to make it work in current browser implementations
+
+TypeScript: Variation, dialect, or flavor of JS introducing features like strong typing
+
+React, Vue, Angular: JS frameworks allowing us to write JS-based frontend apps
+Introduce new coding conventions like JSX, and reliance on tools like Babel, WebPack, and Node,js
+
+npm, WebPack, Gulp: Build tools and infrastructure to automate the process of optimizing human-readable JavaScript for the best browser performance
+
+Node.js: JavaScript server runtime used to run Javascript everywhere; used to run npm, WebPack, Babel, and more on your computer
+
+Tools for working with Javascript:
+
+- Modern browser
+- Code Editor
+- Live Server environment (Installed as extension in VSCode)
+- Browser Console
+
+Formatting and Linting:
+
+- Prettier helps automatically clean up your formatting
+- ESLint helps automatically detect coding errors and can do basic cleanup automatically
+- Both require Node.js
+
+When there is no package.json file in folder, create project from scratch by entering this in terminal:
+npm init
+
+then do
+npm install
+
+or
+npm install express --save
+(--save opyion wil update package.json with the package and its version)
+
+//Modern Javascript loading
+Asynce and Defer
+Default Behaviour:
+Browser stops rendering when Javascript is encountered. JavaScript is executed before rendering continues. Often referred to as content blocking.
+
+Async:
+Browser downloads Javascript in parallel while html renders. When Javascript is fully loaded, rendering stops while JavaScript is executed.
+
+- Javascript renders first before HTML
+
+Defer:
+Browser downloads Javascript in parallel while HTML renders, then defers execution of Javascript until HTML rendering is complete.
+
+- HTML complete renders first before Javascript
+
+async/defer should be standard:
+Only use render blocking when you have specific reason. Loading Javascript in the footer is now an anti-pattern.
+
+Objects are typically constants:
+We can change the properties of the object inside the container. We can't remove or replace the object from the container.
