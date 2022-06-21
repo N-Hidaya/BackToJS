@@ -48,6 +48,22 @@ or
 npm install express --save
 (--save opyion wil update package.json with the package and its version)
 
+Variable: A container with some piece of data
+var container = 5
+var is globally scope: changes made can affect other same variable name.
+
+Use Let to solve scoping issue
+Example, using let in functions
+function headingColor() {
+let color = "blue";
+
+}
+
+const: Once defined, cannot change the value. Protect from overwriting
+
+Array always start with Capital letters in order
+"Javascript", "Expectation", "reality", "lowercase"
+
 //Modern Javascript loading
 Asynce and Defer
 Default Behaviour:
@@ -69,7 +85,34 @@ Only use render blocking when you have specific reason. Loading Javascript in th
 Objects are typically constants:
 We can change the properties of the object inside the container. We can't remove or replace the object from the container.
 
+Practice using google browser console
 document.querySelector
 document.querySelectorAll
 document.getElementsByClassName
 document.getElementsById
+
+Reassigning classnames
+document.getElementById("h1").className = "newclassname"
+
+Adding class
+document.querySelector("main li:first-child").classList.add("new-class")
+
+Removing class
+document.querySelector("main li:first-child").classList.remove("new-class")
+
+Toggle class
+document.querySelector("main li:first-child").classList.toggle("new-class")
+
+Replacing class
+document.querySelector("main li:first-child").classList.replace("packprop", "new-class")
+
+Attributes
+document.querySelector("img").attributes
+document.querySelector("img").getAttribute("alt")
+document.querySelector("img").setAttribute("alt", "A drawing of backpack")
+document.querySelector("img").removeAttribute("title")
+
+Style
+document.querySelector(".site-title").style
+document.querySelector(".site-title").style.color("rebeccapurple")
+document.querySelector(".site-title").style.backgroundColor("pink")
