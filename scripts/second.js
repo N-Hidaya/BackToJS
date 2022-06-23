@@ -95,3 +95,76 @@ console.log(collection);
 
 //using Join method
 console.log(collection.join(","));
+
+
+//DOM events event handler
+const container = document.querySelector(".container");
+const button = document.querySelector(".cta-button");
+const posX = document.querySelector(".posX span");
+const posY = document.querySelector(".posY span");
+
+//Log when the button is clicked 
+button.addEventListener("click", () => {
+    button.classList.toggle("active");
+    console.log("Button was clicked!");
+}, false);
+
+//Update the X and Y displays to show the current mouse position
+const mousePosition = (event) => {
+    posX.innerText = event.pageX;
+    posY.innerText = event.pageY;
+};
+
+window.addEventListener("mousemove", mousePosition, false);
+
+//change the color of the box when the mouse enters
+container.addEventListener(
+    "mouseenter",
+    () => {
+        container.classList.add("blue");
+    },
+    false
+);
+
+container.addEventListener(
+    "mouseleave",
+    () => {
+        container.classList.remove("blue");
+    },
+    false
+);
+
+
+let backpackContents = ["hello", "headlamp", "pen"];
+
+//To add new items
+backpackContents.push("pencil", 5);
+//To add new item in front of the array index 0
+backpackContents.unshift("pencil", 5);
+//hello in index 0 will be gone using shift
+backpackContents.shift();
+//pen in index 2 will be gone using pop
+backpackContents.pop();
+
+//Creating a list of items using function
+backpackContents.forEach(function (item) {
+    item = `<li>${item}</li>`;
+    console.log(item);
+});
+
+console.log(backpackContents);
+
+//Find an item
+const foundItem = backpackContents.find((item) => item === "headlamp");
+console.log(foundItem);
+
+//Remove an item
+let remove = "pencil"
+backpackContents.splice(backpackContents.indexOf(remove), 1)
+console.log(`Array with "${remove}" removed: `, backpackContents);
+
+var numbers = [1,2,3,4,5];
+numbers.push(6); // [1,2,3,4,5,6]
+numbers.unshift(7); // [7,1,2,3,4,5,6]
+numbers.pop(); // [7,1,2,3,4,5]
+numbers.shift(); // [1,2,3,4,5]

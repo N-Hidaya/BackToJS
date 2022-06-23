@@ -1,4 +1,5 @@
 import Backpack from "./backpack.js";
+import backpackObjectArray from "./data.js";
 
 //use constant so that object is not accidentally altered or overwritten
 const everydayPack = new Backpack(
@@ -140,38 +141,57 @@ const theArticle = addPack(backpack);
 console.log(theArticle);
 main.append(addPack(backpack));
 
+//creating event listeners
+//import backpackObjectArray
+const backpackList = backpackObjectArray.map((backpack) => {
+    let backpackArticle = document.createElement("article");
+    backpackArticle.classList.add("backpack");
+    backpackArticle.setAttribute("id", backpack.id);
 
-let backpackContents = ["hello", "headlamp", "pen"];
+    backpackArticle.innerHTML = `
+        <figure class="backpack__image">
+            <img src=${backpack.image} alt="" loading="lazy" />
+        </figure>
+        <h1 class="backpack__name">Everyday Backpack</h1>
+        <ul class="backpack__features">
+            <li class="feature backpack__volume">Volume:<span> ${backpack.volume}</span></li>
+            <li class="feature backpack__color">Color: <span> ${backpack.color}</span></li>
+            <li class="feature backpack__age">Age: <span> ${backpack.age}</span></li>
+            <li class="feature backpack__pockets">Number of pockets:<span> ${backpack.pocketNum}</span></li>
+            <li class="feature backpack__strap">Left strap length:<span>${backpack.strapLength.left} inches</span></li>
+            <li class="feature backpack__strap">Right strap length:<span>${backpack.strapLength.right} inches</span></li>
+            <li class="feature backpack__lid">Lid status: <span> ${backpack.lidOpen ? "open" : "closed"}</span></li>
+        </ul>
+        <button class="lid-toggle">Open lid</button>
+    `;
 
-//To add new items
-backpackContents.push("pencil", 5);
-//To add new item in front of the array index 0
-backpackContents.unshift("pencil", 5);
-//hello in index 0 will be gone using shift
-backpackContents.shift();
-//pen in index 2 will be gone using pop
-backpackContents.pop();
+    const button = backpackArticle.querySelector(".lid-toggle");
+    const status = backpackArticle.querySelector(".backpack__lid open");
 
-//Creating a list of items using function
-backpackContents.forEach(function (item) {
-    item = `<li>${item}</li>`;
-    console.log(item);
+    //callback funtion lidToggle
+    button.addEventListener("click", lidToggle)
+
+    return backpackArticle;
 });
 
-console.log(backpackContents);
+//Advanced event listeners function using "this"
+const lidToggle = function (event) {
+    console.log(event);
+    //Find the current backpack object in backpackObjectArray
+    let backpackObject = backpackObjectArray.find( ({id}) => id === this.parentElement.id);
 
-//Find an item
-const foundItem = backpackContents.find((item) => item === "headlamp");
-console.log(foundItem);
+    //Toggle lidOpen status
+    backpackObject.lidOpen == true ? backpackObject.lidOpen = false : backpackObject.lidOpen = true;
 
-//Remove an item
-let remove = "pencil"
-backpackContents.splice(backpackContents.indexOf(remove), 1)
-console.log(`Array with "${remove}" removed: `, backpackContents);
+    //Toggle button text
+    this.innerText == "Open lid" ? this.innerText = "Close lid" : this.innerText = "Open lid";
 
-var numbers = [1,2,3,4,5];
-numbers.push(6); // [1,2,3,4,5,6]
-numbers.unshift(7); // [7,1,2,3,4,5,6]
-numbers.pop(); // [7,1,2,3,4,5]
-numbers.shift(); // [1,2,3,4,5]
+    //Set visible property status text
+    let status = this.parentElement.querySelector(".backpack__lid span");
+    status.innerText == "closed" ? (status.innerText = "open") : (status.innerText = "closed");
+}
 
+const maincontent = document.querySelector(".maincontent");
+backpackList.forEach((backpack) => {
+    maincontent.append(backpack);
+});
