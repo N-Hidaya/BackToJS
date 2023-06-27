@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const imgWithClick = { cursor: "pointer"};
+const imgWithClick = { cursor: "pointer" };
 
 const Photo = ({
     index,
@@ -12,7 +12,7 @@ const Photo = ({
     top, left,
     key,
 }) => {
-    const imgStyle = { margin: margin, display: "block"};
+    const imgStyle = { margin: margin, display: "block" };
     if (direction === "column") {
         imgStyle.position = "absolute";
         imgStyle.left = left;
@@ -20,20 +20,20 @@ const Photo = ({
     }
 
     const handleClick = (event) => {
-        onClick(event, {photo, index});
+        onClick(event, { photo, index });
     };
 
     //jsx (advanced version of template literals)
     return (
         <img
             key={key}
-            style={onClick ? {...imgStyle, ...imgWithClick} : imgStyle}
+            style={onClick ? { ...imgStyle, ...imgWithClick } : imgStyle}
             {...photo}
             onClick={onClick ? handleClick : null}
         />
     );
 
-    
+
 };
 
 export const photoPropType = PropTypes.shape({
@@ -70,3 +70,4 @@ Photo.propTypes = {
 };
 
 export default Photo;
+

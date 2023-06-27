@@ -1,0 +1,19 @@
+{
+  "name": "backtojs",
+  "version": "1.0.0",
+  "description": "Back To Javascript",
+  "main": "script.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "later"
+  },
+  "keywords": [
+    "backtojs",
+    "BackToJS"
+  ],
+  "author": "Daya",
+  "license": "ISC"
+}
