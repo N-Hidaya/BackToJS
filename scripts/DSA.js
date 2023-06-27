@@ -181,6 +181,44 @@ console.log(recursiveBinarySearch([-5, 2, 4, 6, 10], 10)) //4
 console.log(recursiveBinarySearch([-5, 2, 4, 6, 10], 6)) //3
 console.log(recursiveBinarySearch([-5, 2, 4, 6, 10], 20)) //-1
 
+//Bubble Sort
+// [-6, 20, 8, -2, 4] should return [-2, -6, 4, 8, 20]
+// BigO = 0(n^2)
+function bubbleSort(arr) {
+    let swapped;
+    do {
+        swapped = false;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] > arr[i + 1]) {
+                let temp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = temp;
+                swapped = true
+            }
+        }
+    } while (swapped)
+}
+const arr = [8, 20, -2, 4, -6]
+bubbleSort(arr)
+console.log(arr) // [-6, -2, 4, 8, 20]
+
+// Insertion Sort
+// Virtually split the array into sorted and unsorted part
+function insertionSort(arr) {
+    for (let i = 1; i < arr.length; i++) {
+        let numberToInsert = arr[i]
+        let j = i - 1
+        while (j >= 0 && arr[j] > numberToInsert) {
+            arr[j + 1] = arr[j]
+            j = j - 1
+        }
+        arr[j + 1] = numberToInsert
+    }
+}
+const arr2 = [8, 20, -2, 4, -6]
+insertionSort(arr2)
+console.log(arr2) // [-6, -2, 4, 8, 20]
+
 //find Maximum Greeness
 function findMaximumGreenness(a) {
     const n = a.length;
