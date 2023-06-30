@@ -219,6 +219,109 @@ const arr2 = [8, 20, -2, 4, -6]
 insertionSort(arr2)
 console.log(arr2) // [-6, -2, 4, 8, 20]
 
+//Quick Sort
+//Pick a pivot element in array (first/last/random/median)
+// last element pivot
+// BigO = 0(nlogn)
+function quickSort(arr) {
+    let pivot = arr[arr.length - 1]
+    let left = []
+    let right = []
+    for (let i = 0; i < arr.length - 1; i++) {
+        if (arr[i] < pivot) {
+            left.push(arr[i])
+        } else {
+            right.push(arr[i])
+        }
+    }
+    return [...quickSort(left), pivot, ...quickSort(right)]
+}
+
+const arr3 = [8, 20, -2, 4, -6]
+console.log(quickSort(arr3)) // [-6, -2, 4, 8, 20]
+
+// Merge Sort
+//BigO = 0(nlogn)
+function mergeSort(arr) {
+    if (arr.length < 2) {
+        return arr
+    }
+    const mid = Math.floor(arr.length / 2)
+    const leftArr = arr.slice(0, mid)
+    const rightArr = arr.slice(mid)
+    return merge(mergeSort(leftArr), mergeSort(rightArr))
+}
+
+function merge(leftArr, rightArr) {
+    const sortedArr = []
+    while (leftArr.length && rightArr.length) {
+        if (leftArr[0] <= rightArr[0]) {
+            sortedArr.push(leftArr.shift())
+        } else {
+            sortedArr.push(rightArr.shift())
+        }
+    }
+    return [...sortedArr, ...leftArr, ...rightArr]
+}
+const arr4 = [8, 20, -2, 4, -6]
+console.log(mergeSort(arr4))
+
+//Cartesian product
+//Traverse each array and pair each element from first array to each element in second array
+// BigO = 0(mn) 2 arrays of diff lengths
+function cartesian(arr1, arr2) {
+    const result = []
+    for (let i = 0; i < arr1.length; i++) {
+        for (let j = 0; j < arr2.length; j++) {
+            result.push([arr1[i], arr2[j]])
+        }
+    }
+    return result
+}
+
+const arr1_ = [1, 2]
+const arr2_ = [3, 4, 5]
+console.log(cartesian(arr1_, arr2_)) // [[1,3],[1,4],[1,5],[2,3],[2,4],[2,5]]
+
+//Climbing Staircase
+//given a number of steps, find the different ways to climb
+// BigO = 0(n)
+function climbStairs(n) {
+    const numOfWays = [1, 2]
+    for (let i = 2; i <= n; i++) {
+        numOfWays[i] = numOfWays[i - 1] + numOfWays[i - 2]
+    }
+
+    return numOfWays[n - 1]
+}
+console.log(climbStairs(1))
+console.log(climbStairs(2))
+console.log(climbStairs(3))
+console.log(climbStairs(4))
+
+//Tower of Hanoi
+//BigO = 0(2^n)
+function towerOfHanoi(n, fromRod, toRod, usingRod) {
+    if (n === 1) {
+        console.log(`Move disk 1 from ${fromRod} to ${toRod}`)
+        return
+    }
+    towerOfHanoi(n - 1, fromRod, usingRod, toRod)
+    console.log(`Move disk ${n} from ${fromRod} to ${toRod}`)
+    towerOfHanoi(n - 1, usingRod, toRod, fromRod)
+}
+
+towerOfHanoi(3, 'A', 'C', 'B')
+//Move disk 1 move A to C
+// Move disk 2 from A to B
+//Move disk 1 from C to B
+//Move disk 3 from A to C
+//Move disk 1 from B to A
+// Move disk 2 from B to C
+//Move disk 1 from A to C
+
+
+
 //find Maximum Greeness
 function findMaximumGreenness(a) {
     const n = a.length;
